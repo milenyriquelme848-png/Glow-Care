@@ -1,0 +1,3090 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow & Care - Cuidado de la Piel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* CSS integrado para evitar problemas de carga */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #FFB6C1;
+            --secondary-lavender: #E6E6FA;
+            --accent-peach: #FFCCCB;
+            --soft-purple: #D8BFD8;
+            --light-pink: #FFE4E1;
+            --gold-accent: #FFD700;
+            --white: #FFFFFF;
+            --soft-gray: #F8F8F8;
+            --text-dark: #4A4A4A;
+            --text-light: #8B8B8B;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --shadow-soft: 0 4px 20px rgba(255, 182, 193, 0.2);
+            --shadow-hover: 0 8px 30px rgba(255, 182, 193, 0.3);
+            --shadow-card: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--light-pink), var(--secondary-lavender));
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            --primary-pink: #FF91A4;
+            --secondary-lavender: #9B8FB8;
+            --accent-peach: #FFB3BA;
+            --soft-purple: #B8A8C8;
+            --light-pink: #2D2D3A;
+            --white: #1A1A24;
+            --soft-gray: #252530;
+            --text-dark: #E8E8F0;
+            --text-light: #B8B8C8;
+            background: linear-gradient(135deg, #1A1A24, #2D2D3A);
+        }
+
+        body.dark-mode .header {
+            background: rgba(26, 26, 36, 0.95);
+        }
+
+        body.dark-mode .modal-content,
+        body.dark-mode .benefit-card,
+        body.dark-mode .routine-card,
+        body.dark-mode .testimonial-card,
+        body.dark-mode .faq-question,
+        body.dark-mode .chat-container {
+            background: #252530;
+            color: #E8E8F0;
+        }
+
+        body.dark-mode .quiz-container {
+            background: #252530;
+        }
+
+        body.dark-mode .option-btn {
+            background: #2D2D3A;
+            border-color: #3D3D4A;
+            color: #E8E8F0;
+        }
+
+        body.dark-mode .footer {
+            background: #1A1A24;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-soft);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            text-align: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-pink);
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(255, 182, 193, 0.3);
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin: 0;
+            font-style: italic;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-pink);
+            background: var(--light-pink);
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .login-btn,
+        .register-btn {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .register-btn {
+            background: transparent;
+            color: var(--primary-pink);
+            border: 2px solid var(--primary-pink);
+        }
+
+        .login-btn:hover,
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--light-pink), var(--secondary-lavender));
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .title-highlight {
+            color: var(--primary-pink);
+            display: block;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, var(--primary-pink), var(--accent-peach));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-card);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--primary-pink);
+            border: 2px solid var(--primary-pink);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--soft-gray);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .quiz-progress {
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            background: linear-gradient(45deg, var(--primary-pink), var(--accent-peach));
+            height: 100%;
+            width: 20%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .question {
+            display: none;
+        }
+
+        .question.active {
+            display: block;
+        }
+
+        .question h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary-pink);
+            background: var(--light-pink);
+        }
+
+        .option-btn.selected {
+            background: var(--primary-pink);
+            border-color: var(--primary-pink);
+            color: white;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-btn {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .result-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Routines Section */
+        .routines-section {
+            padding: 4rem 2rem;
+            background: var(--light-pink);
+        }
+
+        .routines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .routine-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s ease;
+        }
+
+        .routine-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .routine-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .routine-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .routine-header h3 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            background: var(--primary-pink);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .step-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: var(--shadow-card);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #FF91A4;
+        }
+
+        /* User Profile Styles */
+        .user-profile {
+            position: relative;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255, 182, 193, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .user-info:hover {
+            background: rgba(255, 182, 193, 0.2);
+            border-color: var(--primary-pink);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .user-type {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            transition: transform 0.3s ease;
+        }
+
+        .user-info.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow-card);
+            padding: 0.5rem 0;
+            min-width: 200px;
+            z-index: 1001;
+            border: 1px solid #e0e0e0;
+        }
+
+        .dropdown-item {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item:hover {
+            background: var(--light-pink);
+        }
+
+        .dropdown-item.logout {
+            color: #dc3545;
+        }
+
+        .dropdown-item.logout:hover {
+            background: #f8d7da;
+        }
+
+        .dropdown-divider {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 0.5rem 0;
+        }
+
+
+
+        /* Profile Modal Styles */
+        .profile-section {
+            text-align: center;
+        }
+
+        .profile-avatar-section {
+            margin-bottom: 2rem;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin: 0 auto 1rem;
+        }
+
+        .change-avatar-btn {
+            background: var(--secondary-lavender);
+            color: var(--text-dark);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .profile-info {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .profile-stats h4 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: var(--soft-gray);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-pink);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+
+
+        /* Settings Modal Styles */
+        .settings-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .settings-section:last-child {
+            border-bottom: none;
+        }
+
+        .settings-section h4 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .setting-item {
+            margin-bottom: 1rem;
+        }
+
+        .setting-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .setting-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-pink);
+        }
+
+        .theme-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .theme-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .theme-btn.active {
+            border-color: var(--primary-pink);
+        }
+
+        .theme-preview {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+        }
+
+        .pink-theme {
+            background: linear-gradient(45deg, #FFB6C1, #FFCCCB);
+        }
+
+        .lavender-theme {
+            background: linear-gradient(45deg, #E6E6FA, #D8BFD8);
+        }
+
+        .peach-theme {
+            background: linear-gradient(45deg, #FFCCCB, #FFE4E1);
+        }
+
+        .danger-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .danger-btn:hover {
+            background: #c82333;
+        }
+
+        /* Form select styles */
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--soft-gray);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            background: var(--light-pink);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-peach));
+            color: white;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 4rem 2rem;
+            background: var(--light-pink);
+        }
+
+        .testimonials-carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto 2rem;
+        }
+
+        .testimonials-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial-card {
+            display: none;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-card);
+            text-align: center;
+        }
+
+        .testimonial-card.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .testimonial-stars {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            font-size: 3rem;
+        }
+
+        .testimonial-author h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-author p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+            color: var(--primary-pink);
+        }
+
+        .carousel-btn:hover {
+            background: var(--primary-pink);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev {
+            left: -25px;
+        }
+
+        .carousel-btn.next {
+            right: -25px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--primary-pink);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-pink);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: white;
+            border: none;
+            padding: 1.5rem;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--soft-gray);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--primary-pink);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--soft-gray);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding: 1.5rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--secondary-lavender), var(--soft-purple));
+        }
+
+        .newsletter-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter-text h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        .newsletter-form button {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            background: #FF91A4;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--primary-pink);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-pink);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+        }
+
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-value {
+                font-size: 2.5rem;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+
+            .carousel-btn.prev {
+                left: -10px;
+            }
+
+            .carousel-btn.next {
+                right: -10px;
+            }
+
+            .testimonial-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-text h2 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Encabezado -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1 class="logo">Glow & Care</h1>
+                <p class="tagline">Tu belleza natural es tu mejor accesorio ✨</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Inicio</a></li>
+                <li><a href="#quiz" class="nav-link">Quiz</a></li>
+                <li><a href="#routines" class="nav-link">Rutinas</a></li>
+            </ul>
+            <div class="user-area">
+                <!-- Estado no logueado -->
+                <div class="auth-buttons" id="authButtons">
+                    <button class="login-btn" id="loginBtn">
+                        <span>👤</span> Iniciar Sesión
+                    </button>
+                    <button class="register-btn" id="registerBtn">
+                        Registrarse
+                    </button>
+                </div>
+
+                <!-- Estado logueado - Perfil de usuario -->
+                <div class="user-profile" id="userProfile" style="display: none;">
+                    <div class="user-info" onclick="toggleUserDropdown()">
+                        <div class="user-avatar" id="userAvatar">👤</div>
+                        <div class="user-details">
+                            <span class="user-name" id="userName">Usuario</span>
+                            <span class="user-type" id="userSkinType">Tipo de piel</span>
+                        </div>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown" style="display: none;">
+                        <button class="dropdown-item" onclick="showProfile()">
+                            <span>👤</span> Mi Perfil
+                        </button>
+
+                        <button class="dropdown-item" onclick="showSettings()">
+                            <span>⚙️</span> Configuración
+                        </button>
+                        <hr class="dropdown-divider">
+                        <button class="dropdown-item logout" onclick="logout()">
+                            <span>🚪</span> Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección Hero -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">✨</span>
+                    <span>Skincare Personalizado</span>
+                </div>
+
+                <h2 class="hero-title">
+                    <span class="title-line">Descubre tu</span>
+                    <span class="title-highlight">rutina perfecta</span>
+                </h2>
+
+                <p class="hero-description">
+                    Cada tipo de piel merece cuidados únicos. Encuentra la rutina ideal para ti y
+                    logra ese resplandor natural que siempre has deseado.
+                </p>
+
+                <div class="hero-buttons">
+                    <button class="cta-button primary" onclick="scrollToQuiz()">
+                        <span>Hacer Quiz Gratuito</span>
+                    </button>
+                    <button class="cta-button secondary" onclick="scrollToRoutines()">
+                        <span>Ver Rutinas</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Interactivo -->
+        <section id="quiz" class="quiz-section">
+            <div class="container">
+                <h2 class="section-title">¿Cuál es tu tipo de piel?</h2>
+                <p class="section-subtitle">Responde nuestro quiz personalizado y descubre la rutina perfecta para ti
+                </p>
+
+                <div class="quiz-container">
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-text">Pregunta <span id="currentQuestion">1</span> de <span
+                                id="totalQuestions">5</span></span>
+                    </div>
+
+                    <div class="quiz-content" id="quizContent">
+                        <!-- Las preguntas se generarán dinámicamente -->
+                    </div>
+
+                    <div class="quiz-result" id="quizResult" style="display: none;">
+                        <div class="result-icon" id="resultIcon">🌹</div>
+                        <h3 id="resultTitle">Tu tipo de piel es: Piel Seca</h3>
+                        <p id="resultDescription">Tu piel necesita hidratación intensa y productos suaves que nutran
+                            profundamente.</p>
+                        <button class="result-btn" onclick="scrollToRoutines()">Ver Mi Rutina Personalizada</button>
+                        <button class="result-btn" onclick="restartQuiz()"
+                            style="background: #6c757d; margin-left: 1rem;">Repetir Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Rutinas -->
+        <section id="routines" class="routines-section">
+            <div class="container">
+                <h2 class="section-title">Rutinas por Tipo de Piel</h2>
+                <p class="section-subtitle">Encuentra la rutina perfecta para tu tipo de piel</p>
+
+                <div class="routines-grid">
+                    <div class="routine-card">
+                        <div class="routine-header">
+                            <div class="routine-icon">🌹</div>
+                            <h3>Piel Seca</h3>
+                        </div>
+                        <div class="routine-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Limpieza Suave</h4>
+                                    <p>Usa un limpiador cremoso sin sulfatos para no resecar más tu piel</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Hidratación Intensa</h4>
+                                    <p>Aplica una crema hidratante rica en ácido hialurónico</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Protección Solar</h4>
+                                    <p>SPF 30+ con ingredientes hidratantes para proteger del sol</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="routine-card">
+                        <div class="routine-header">
+                            <div class="routine-icon">🌸</div>
+                            <h3>Piel Mixta</h3>
+                        </div>
+                        <div class="routine-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Limpieza Equilibrada</h4>
+                                    <p>Limpia con gel suave, más intenso en zona T, suave en mejillas</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Hidratación Selectiva</h4>
+                                    <p>Crema ligera en zona T, más rica en mejillas secas</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Protección Uniforme</h4>
+                                    <p>SPF de textura ligera que no obstruya los poros</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="routine-card">
+                        <div class="routine-header">
+                            <div class="routine-icon">🌿</div>
+                            <h3>Piel Grasa</h3>
+                        </div>
+                        <div class="routine-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Limpieza Profunda</h4>
+                                    <p>Gel limpiador con ácido salicílico para controlar el exceso de grasa</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Hidratación Ligera</h4>
+                                    <p>Gel hidratante oil-free que no obstruya los poros</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Protección Mate</h4>
+                                    <p>SPF de acabado mate para controlar el brillo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="routine-card">
+                        <div class="routine-header">
+                            <div class="routine-icon">🌼</div>
+                            <h3>Piel Sensible</h3>
+                        </div>
+                        <div class="routine-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Limpieza Extra Suave</h4>
+                                    <p>Limpieza con agua micelar o limpiador hipoalergénico</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Calmante Natural</h4>
+                                    <p>Crema con aloe vera y camomila para calmar irritaciones</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Protección Suave</h4>
+                                    <p>SPF mineral sin químicos agresivos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Beneficios -->
+        <section class="benefits-section">
+            <div class="container">
+                <h2 class="section-title">¿Por qué elegir Glow & Care?</h2>
+                <p class="section-subtitle">Tu aliado perfecto para una piel radiante y saludable</p>
+
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎯</div>
+                        <h3>Personalizado</h3>
+                        <p>Rutinas y consejos adaptados específicamente a tu tipo de piel y necesidades únicas</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🧪</div>
+                        <h3>Basado en Ciencia</h3>
+                        <p>Información respaldada por dermatólogos y estudios científicos comprobados</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💡</div>
+                        <h3>Fácil de Seguir</h3>
+                        <p>Rutinas simples y efectivas que se adaptan a tu estilo de vida diario</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🌙</div>
+                        <h3>Asistente 24/7</h3>
+                        <p>Luna está disponible siempre para resolver tus dudas sobre skincare</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📈</div>
+                        <h3>Resultados Visibles</h3>
+                        <p>Sigue tu progreso y observa cómo tu piel mejora día a día</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💝</div>
+                        <h3>100% Gratis</h3>
+                        <p>Acceso completo a todas las funcionalidades sin costo alguno</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estadísticas -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-value" data-target="15000">0</div>
+                        <div class="stat-label">Usuarios Felices</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" data-target="50000">0</div>
+                        <div class="stat-label">Quizzes Completados</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" data-target="98">0</div>
+                        <div class="stat-label">% Satisfacción</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" data-target="24">0</div>
+                        <div class="stat-label">Soporte 24/7</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios -->
+        <section class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title">Lo que dicen nuestras usuarias</h2>
+                <p class="section-subtitle">Miles de personas han transformado su piel con Glow & Care</p>
+
+                <div class="testimonials-carousel">
+                    <button class="carousel-btn prev" onclick="prevTestimonial()">‹</button>
+
+                    <div class="testimonials-wrapper">
+                        <div class="testimonial-card active">
+                            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                            <p class="testimonial-text">"Glow & Care cambió completamente mi rutina de skincare.
+                                Finalmente entiendo qué necesita mi piel y los resultados son increíbles. ¡Mi piel nunca
+                                se había visto tan radiante!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">👩</div>
+                                <div>
+                                    <h4>María González</h4>
+                                    <p>Piel Mixta • 28 años</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                            <p class="testimonial-text">"Luna es como tener una dermatóloga personal disponible 24/7.
+                                Responde todas mis dudas y me ha ayudado a crear la rutina perfecta para mi piel
+                                sensible."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">👱‍♀️</div>
+                                <div>
+                                    <h4>Ana Martínez</h4>
+                                    <p>Piel Sensible • 32 años</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                            <p class="testimonial-text">"Después de años luchando con el acné, finalmente encontré una
+                                guía clara y efectiva. Las rutinas personalizadas realmente funcionan. ¡Gracias Glow &
+                                Care!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">🧑</div>
+                                <div>
+                                    <h4>Laura Sánchez</h4>
+                                    <p>Piel Grasa • 24 años</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                            <p class="testimonial-text">"Como principiante en skincare, estaba perdida. El quiz me ayudó
+                                a identificar mi tipo de piel y ahora tengo una rutina simple pero efectiva. ¡Mi piel se
+                                ve y se siente mejor!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">👩‍🦰</div>
+                                <div>
+                                    <h4>Carmen López</h4>
+                                    <p>Piel Seca • 26 años</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn next" onclick="nextTestimonial()">›</button>
+                </div>
+
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="goToTestimonial(0)"></span>
+                    <span class="dot" onclick="goToTestimonial(1)"></span>
+                    <span class="dot" onclick="goToTestimonial(2)"></span>
+                    <span class="dot" onclick="goToTestimonial(3)"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Preguntas Frecuentes</h2>
+                <p class="section-subtitle">Resolvemos tus dudas más comunes sobre skincare</p>
+
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>¿Cuánto tiempo tarda en verse resultados?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Los resultados varían según el objetivo: la hidratación se nota en días, el acné mejora
+                                en 4-6 semanas, las manchas en 8-12 semanas, y las arrugas en 3-6 meses. La clave es ser
+                                constante con tu rutina.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>¿Es realmente gratis?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sí, Glow & Care es 100% gratuito. Puedes acceder a todas las funcionalidades, hacer el
+                                quiz, obtener rutinas personalizadas y hablar con Luna sin ningún costo.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>¿Necesito comprar productos caros?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>No necesariamente. El skincare efectivo puede adaptarse a cualquier presupuesto. Lo
+                                importante es elegir productos adecuados para tu tipo de piel y ser constante. Hay
+                                excelentes opciones en farmacias.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>¿Puedo usar los productos que ya tengo?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>¡Por supuesto! Nuestras rutinas son guías generales. Puedes adaptar los pasos con los
+                                productos que ya tienes, siempre que sean adecuados para tu tipo de piel.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>¿Luna puede reemplazar a un dermatólogo?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>No. Luna es una herramienta educativa para cuidado general de la piel. Para problemas
+                                severos, condiciones médicas o tratamientos específicos, siempre debes consultar a un
+                                dermatólogo certificado.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>¿Con qué frecuencia debo hacer el quiz?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Puedes repetir el quiz cada 3-6 meses o cuando notes cambios en tu piel (por estación,
+                                edad, cambios hormonales, etc.). Tu tipo de piel puede cambiar con el tiempo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <div class="newsletter-text">
+                        <h2>✨ Recibe tips de skincare semanales</h2>
+                        <p>Suscríbete y obtén consejos exclusivos, rutinas personalizadas y las últimas tendencias en
+                            cuidado de la piel directo en tu email.</p>
+                    </div>
+                    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                        <input type="email" placeholder="Tu correo electrónico" required id="newsletterEmail">
+                        <button type="submit">Suscribirme</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-logo">Glow & Care</h3>
+                    <p>Tu aliado perfecto para una piel radiante y saludable. Cuidado personalizado basado en ciencia.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">💼</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#quiz">Quiz</a></li>
+                        <li><a href="#routines">Rutinas</a></li>
+                        <li><a href="#" onclick="toggleChat()">Hablar con Luna</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog de Skincare</a></li>
+                        <li><a href="#">Guía de Ingredientes</a></li>
+                        <li><a href="#">Glosario</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Glow & Care. Todos los derechos reservados. Hecho con 💖 para tu piel.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modales --></div>
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Iniciar Sesión</h3>
+                <button class="close-modal" onclick="closeModal('loginModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Correo electrónico</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Contraseña</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Iniciar Sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Registrarse</h3>
+                <button class="close-modal" onclick="closeModal('registerModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="registerName">Nombre completo</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Correo electrónico</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Contraseña</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerAge">Edad</label>
+                        <select id="registerAge" required>
+                            <option value="">Selecciona tu edad</option>
+                            <option value="18-25">18 - 25 años</option>
+                            <option value="26-35">26 - 35 años</option>
+                            <option value="36-45">36 - 45 años</option>
+                            <option value="46+">46+ años</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Registrarse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Perfil -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>Mi Perfil</h3>
+                <button class="close-modal" onclick="closeModal('profileModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-section">
+                    <div class="profile-avatar-section">
+                        <div class="profile-avatar" id="profileAvatar">👤</div>
+                        <button class="change-avatar-btn" onclick="changeAvatar()">Cambiar Avatar</button>
+                    </div>
+
+                    <div class="profile-info">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" id="profileName" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="profileEmail" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de Piel</label>
+                            <input type="text" id="profileSkinType" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Edad</label>
+                            <input type="text" id="profileAge" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Miembro desde</label>
+                            <input type="text" id="profileMemberSince" readonly>
+                        </div>
+                    </div>
+
+                    <div class="profile-stats">
+                        <h4>Estadísticas</h4>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-number" id="quizzesTaken">0</span>
+                                <span class="stat-label">Quizzes realizados</span>
+                            </div>
+
+                            <div class="stat-item">
+                                <span class="stat-number" id="daysActive">1</span>
+                                <span class="stat-label">Días activo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal de Configuración -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>Configuración ⚙️</h3>
+                <button class="close-modal" onclick="closeModal('settingsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h4>Preferencias</h4>
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="emailNotifications" checked>
+                            <span class="checkmark"></span>
+                            Recibir notificaciones por email
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="skinTips" checked>
+                            <span class="checkmark"></span>
+                            Tips diarios de skincare
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="settings-section">
+                    <h4>Tema</h4>
+                    <div class="theme-options">
+                        <button class="theme-btn active" data-theme="pink" onclick="changeTheme('pink')">
+                            <div class="theme-preview pink-theme"></div>
+                            <span>Rosa</span>
+                        </button>
+                        <button class="theme-btn" data-theme="lavender" onclick="changeTheme('lavender')">
+                            <div class="theme-preview lavender-theme"></div>
+                            <span>Lavanda</span>
+                        </button>
+                        <button class="theme-btn" data-theme="peach" onclick="changeTheme('peach')">
+                            <div class="theme-preview peach-theme"></div>
+                            <span>Melocotón</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <button class="danger-btn" onclick="confirmDeleteAccount()">
+                        Eliminar Cuenta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let currentQuestionIndex = 0;
+        let answers = [];
+        let userProfile = null;
+        let quizResults = null;
+
+        const questions = [
+            {
+                question: "¿Cómo se siente tu piel por las mañanas?",
+                options: [
+                    { text: "Tirante y seca", value: "dry" },
+                    { text: "Grasa, especialmente en la zona T", value: "oily" },
+                    { text: "Grasa en la zona T, normal en mejillas", value: "combination" },
+                    { text: "Irritada o enrojecida", value: "sensitive" }
+                ]
+            },
+            {
+                question: "¿Cómo reacciona tu piel al sol?",
+                options: [
+                    { text: "Se reseca mucho", value: "dry" },
+                    { text: "Produce más grasa", value: "oily" },
+                    { text: "Varía según la zona", value: "combination" },
+                    { text: "Se irrita fácilmente", value: "sensitive" }
+                ]
+            },
+            {
+                question: "¿Con qué frecuencia tienes brotes de acné?",
+                options: [
+                    { text: "Raramente", value: "dry" },
+                    { text: "Frecuentemente", value: "oily" },
+                    { text: "Solo en la zona T", value: "combination" },
+                    { text: "Ocasionalmente, pero se inflaman mucho", value: "sensitive" }
+                ]
+            },
+            {
+                question: "¿Cómo se ve tu piel sin maquillaje?",
+                options: [
+                    { text: "Opaca y sin brillo", value: "dry" },
+                    { text: "Brillante en general", value: "oily" },
+                    { text: "Brillante en nariz y frente", value: "combination" },
+                    { text: "Enrojecida o con manchas", value: "sensitive" }
+                ]
+            },
+            {
+                question: "¿Cómo reacciona tu piel a productos nuevos?",
+                options: [
+                    { text: "Los absorbe rápidamente", value: "dry" },
+                    { text: "A veces se siente pesada", value: "oily" },
+                    { text: "Depende de la zona", value: "combination" },
+                    { text: "Se irrita con facilidad", value: "sensitive" }
+                ]
+            }
+        ];
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('Glow & Care cargado correctamente! 🎉');
+            initializeQuiz();
+            setupEventListeners();
+        });
+
+        function initializeQuiz() {
+            showQuestion(0);
+        }
+
+        function setupEventListeners() {
+            // Navegación
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+
+                        // Actualizar enlace activo
+                        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // Modales
+            document.getElementById('loginBtn').addEventListener('click', () => {
+                document.getElementById('loginModal').style.display = 'flex';
+            });
+
+            document.getElementById('registerBtn').addEventListener('click', () => {
+                document.getElementById('registerModal').style.display = 'flex';
+            });
+
+            // Cerrar modal al hacer clic fuera
+            window.addEventListener('click', function (e) {
+                if (e.target.classList.contains('modal')) {
+                    e.target.style.display = 'none';
+                }
+            });
+
+            // Cerrar dropdown del usuario al hacer clic fuera
+            document.addEventListener('click', function (e) {
+                const userProfile = document.getElementById('userProfile');
+                const dropdown = document.getElementById('userDropdown');
+
+                if (userProfile && !userProfile.contains(e.target)) {
+                    dropdown.style.display = 'none';
+                    document.querySelector('.user-info').classList.remove('active');
+                }
+            });
+        }
+
+        function showQuestion(index) {
+            const quizContent = document.getElementById('quizContent');
+            const currentQuestionSpan = document.getElementById('currentQuestion');
+            const totalQuestionsSpan = document.getElementById('totalQuestions');
+            const progressFill = document.getElementById('progressFill');
+
+            currentQuestionSpan.textContent = index + 1;
+            totalQuestionsSpan.textContent = questions.length;
+            progressFill.style.width = ((index + 1) / questions.length) * 100 + '%';
+
+            const question = questions[index];
+            quizContent.innerHTML = `
+                <div class="question active">
+                    <h3>${question.question}</h3>
+                    <div class="options">
+                        ${question.options.map(option =>
+                `<button class="option-btn" onclick="selectOption(this, '${option.value}')">${option.text}</button>`
+            ).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectOption(button, value) {
+            // Remover selección anterior
+            const options = button.parentElement.querySelectorAll('.option-btn');
+            options.forEach(opt => opt.classList.remove('selected'));
+
+            // Seleccionar opción actual
+            button.classList.add('selected');
+
+            // Guardar respuesta
+            answers[currentQuestionIndex] = value;
+
+            // Avanzar a la siguiente pregunta
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    showQuestion(currentQuestionIndex);
+                } else {
+                    showResult();
+                }
+            }, 500);
+        }
+
+        function showResult() {
+            // Calcular el tipo de piel más frecuente
+            const skinTypes = { dry: 0, oily: 0, combination: 0, sensitive: 0 };
+            answers.forEach(answer => {
+                if (skinTypes[answer] !== undefined) {
+                    skinTypes[answer]++;
+                }
+            });
+
+            const resultType = Object.keys(skinTypes).reduce((a, b) =>
+                skinTypes[a] > skinTypes[b] ? a : b
+            );
+
+            const skinTypeInfo = {
+                dry: {
+                    icon: "🌹",
+                    title: "Piel Seca",
+                    description: "Tu piel necesita hidratación intensa y productos suaves que nutran profundamente. Evita productos con alcohol y opta por texturas cremosas."
+                },
+                oily: {
+                    icon: "🌿",
+                    title: "Piel Grasa",
+                    description: "Tu piel produce exceso de grasa. Necesitas productos que controlen la producción sebácea sin resecar. Usa texturas ligeras y oil-free."
+                },
+                combination: {
+                    icon: "🌸",
+                    title: "Piel Mixta",
+                    description: "Tu piel tiene diferentes necesidades en distintas zonas. La zona T requiere control de grasa mientras las mejillas necesitan hidratación."
+                },
+                sensitive: {
+                    icon: "🌼",
+                    title: "Piel Sensible",
+                    description: "Tu piel reacciona fácilmente a estímulos externos. Necesitas productos hipoalergénicos, sin fragancias y con ingredientes calmantes."
+                }
+            };
+
+            const info = skinTypeInfo[resultType];
+
+            // Guardar resultados del quiz
+            quizResults = {
+                type: resultType,
+                title: info.title,
+                description: info.description,
+                icon: info.icon,
+                date: new Date().toLocaleDateString()
+            };
+
+            // Si el usuario está logueado, actualizar su perfil
+            if (userProfile) {
+                userProfile.skinType = info.title;
+                userProfile.quizzesTaken += 1;
+                document.getElementById('userSkinType').textContent = userProfile.skinType;
+            }
+
+            document.getElementById('resultIcon').textContent = info.icon;
+            document.getElementById('resultTitle').textContent = `Tu tipo de piel es: ${info.title}`;
+            document.getElementById('resultDescription').textContent = info.description;
+
+            document.getElementById('quizContent').style.display = 'none';
+            document.getElementById('quizResult').style.display = 'block';
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            answers = [];
+            document.getElementById('quizContent').style.display = 'block';
+            document.getElementById('quizResult').style.display = 'none';
+            showQuestion(0);
+        }
+
+        // Funciones de navegación
+        function scrollToQuiz() {
+            document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToRoutines() {
+            document.getElementById('routines').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Funciones de modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+
+            // Crear perfil de usuario existente
+            userProfile = {
+                name: "María González",
+                email: email,
+                skinType: "Piel Mixta",
+                age: "26-35",
+                memberSince: "Enero 2024",
+                avatar: "👩",
+                quizzesTaken: 3,
+                daysActive: 45
+            };
+
+            showUserProfile();
+            closeModal('loginModal');
+
+            // Mostrar mensaje de bienvenida
+            setTimeout(() => {
+                alert(`¡Bienvenida de vuelta, ${userProfile.name}! 💖\n\nTu perfil ha sido cargado correctamente.\n✨ Tipo de piel: ${userProfile.skinType}\n📅 Miembro desde: ${userProfile.memberSince}`);
+            }, 500);
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const age = document.getElementById('registerAge').value;
+
+            // Crear nuevo perfil de usuario
+            userProfile = {
+                name: name,
+                email: email,
+                skinType: quizResults ? quizResults.title : "Por determinar",
+                age: age,
+                memberSince: new Date().toLocaleDateString('es-ES', { month: 'long', year: 'numeric' }),
+                avatar: "👤",
+                quizzesTaken: quizResults ? 1 : 0,
+                daysActive: 1
+            };
+
+            showUserProfile();
+            closeModal('registerModal');
+
+            // Mostrar mensaje de bienvenida
+            setTimeout(() => {
+                alert(`¡Bienvenida a Glow & Care, ${name}! 🌸\n\nTu perfil ha sido creado exitosamente.\n📧 Email: ${email}\n🎂 Edad: ${age}\n\n${quizResults ? `✨ Hemos detectado que tienes ${quizResults.title}` : '💡 Te recomendamos hacer nuestro quiz para personalizar tu experiencia'}`);
+            }, 500);
+        }
+
+        function showUserProfile() {
+            if (!userProfile) return;
+
+            // Ocultar botones de auth y mostrar perfil
+            document.getElementById('authButtons').style.display = 'none';
+            document.getElementById('userProfile').style.display = 'flex';
+
+            // Actualizar información del perfil en el header
+            document.getElementById('userName').textContent = userProfile.name;
+            document.getElementById('userSkinType').textContent = userProfile.skinType;
+            document.getElementById('userAvatar').textContent = userProfile.avatar;
+        }
+
+        function toggleUserDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            const userInfo = document.querySelector('.user-info');
+
+            if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                dropdown.style.display = 'block';
+                userInfo.classList.add('active');
+            } else {
+                dropdown.style.display = 'none';
+                userInfo.classList.remove('active');
+            }
+        }
+
+        function showProfile() {
+            if (!userProfile) return;
+
+            // Llenar datos del perfil en el modal
+            document.getElementById('profileName').value = userProfile.name;
+            document.getElementById('profileEmail').value = userProfile.email;
+            document.getElementById('profileSkinType').value = userProfile.skinType;
+            document.getElementById('profileAge').value = userProfile.age;
+            document.getElementById('profileMemberSince').value = userProfile.memberSince;
+            document.getElementById('profileAvatar').textContent = userProfile.avatar;
+
+            // Actualizar estadísticas
+            document.getElementById('quizzesTaken').textContent = userProfile.quizzesTaken;
+            document.getElementById('daysActive').textContent = userProfile.daysActive;
+
+            document.getElementById('profileModal').style.display = 'flex';
+            toggleUserDropdown();
+        }
+
+
+
+        function showSettings() {
+            document.getElementById('settingsModal').style.display = 'flex';
+            toggleUserDropdown();
+        }
+
+        function logout() {
+            userProfile = null;
+            quizResults = null;
+
+            // Mostrar botones de auth y ocultar perfil
+            document.getElementById('authButtons').style.display = 'flex';
+            document.getElementById('userProfile').style.display = 'none';
+
+            toggleUserDropdown();
+
+            alert('Has cerrado sesión correctamente. ¡Esperamos verte pronto! 👋');
+        }
+
+        function changeAvatar() {
+            const avatars = ['👤', '👩', '🧑', '👱‍♀️', '👩‍🦰', '👩‍🦱', '👩‍🦳', '🧕', '👸', '🤴'];
+            const currentIndex = avatars.indexOf(userProfile.avatar);
+            const nextIndex = (currentIndex + 1) % avatars.length;
+
+            userProfile.avatar = avatars[nextIndex];
+            document.getElementById('profileAvatar').textContent = userProfile.avatar;
+            document.getElementById('userAvatar').textContent = userProfile.avatar;
+        }
+
+        function changeTheme(theme) {
+            // Actualizar botón activo
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-theme="${theme}"]`).classList.add('active');
+
+            // Aplicar tema (esto se puede expandir para cambiar colores realmente)
+            const root = document.documentElement;
+
+            switch (theme) {
+                case 'lavender':
+                    root.style.setProperty('--primary-pink', '#E6E6FA');
+                    root.style.setProperty('--accent-peach', '#D8BFD8');
+                    break;
+                case 'peach':
+                    root.style.setProperty('--primary-pink', '#FFCCCB');
+                    root.style.setProperty('--accent-peach', '#FFE4E1');
+                    break;
+                default: // pink
+                    root.style.setProperty('--primary-pink', '#FFB6C1');
+                    root.style.setProperty('--accent-peach', '#FFCCCB');
+            }
+
+            alert(`Tema cambiado a ${theme}! 🎨`);
+        }
+
+        function confirmDeleteAccount() {
+            if (confirm('¿Estás segura de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')) {
+                logout();
+                alert('Tu cuenta ha sido eliminada. Lamentamos verte partir. 😢');
+            }
+        }
+
+        function addToFavorites(productId, productName, productDescription) {
+            const favorite = {
+                id: productId,
+                name: productName,
+                description: productDescription,
+                dateAdded: new Date().toLocaleDateString()
+            };
+
+            favorites.push(favorite);
+
+            if (userProfile) {
+                userProfile.favoriteProducts = favorites.length;
+                document.getElementById('favoritesCount').textContent = userProfile.favoriteProducts;
+            }
+
+            alert(`${productName} agregado a favoritos! ❤️`);
+        }
+
+        function removeFavorite(productId) {
+            favorites = favorites.filter(fav => fav.id !== productId);
+
+            if (userProfile) {
+                userProfile.favoriteProducts = favorites.length;
+                document.getElementById('favoritesCount').textContent = userProfile.favoriteProducts;
+            }
+
+            showFavorites(); // Refrescar la lista
+        }
+
+        // Mensaje de bienvenida
+        setTimeout(() => {
+            console.log('✨ ¡Todo listo para comenzar tu journey de skincare! ✨');
+        }, 1000);
+
+        // ============================================
+        // CHATBOT DE SKINCARE
+        // ============================================
+
+        const skincareKnowledge = {
+            // Tipos de piel
+            'piel seca': 'La piel seca carece de humedad y lípidos. Se caracteriza por tirantez, descamación y líneas finas. Necesita limpiadores cremosos, hidratantes ricos en ácido hialurónico, ceramidas y aceites naturales. Evita productos con alcohol y sulfatos.',
+            'piel grasa': 'La piel grasa produce exceso de sebo, causando brillo y poros dilatados. Usa limpiadores con ácido salicílico, hidratantes oil-free, y productos con niacinamida para controlar la producción de grasa. No omitas la hidratación.',
+            'piel mixta': 'La piel mixta tiene zona T grasa (frente, nariz, mentón) y mejillas normales o secas. Requiere tratamiento diferenciado: productos ligeros en zona T y más nutritivos en mejillas. El equilibrio es clave.',
+            'piel sensible': 'La piel sensible reacciona fácilmente a estímulos externos con enrojecimiento, picor o irritación. Usa productos hipoalergénicos, sin fragancias, con ingredientes calmantes como aloe vera, camomila y centella asiática.',
+
+            // Ingredientes activos
+            'ácido hialurónico': 'El ácido hialurónico es un humectante que retiene hasta 1000 veces su peso en agua. Hidrata profundamente, rellena líneas finas y mejora la elasticidad. Ideal para todo tipo de piel, especialmente seca y madura.',
+            'vitamina c': 'La vitamina C es un antioxidante potente que ilumina, unifica el tono, estimula colágeno y protege contra radicales libres. Úsala por la mañana con protector solar. Concentraciones efectivas: 10-20%.',
+            'retinol': 'El retinol (vitamina A) es el gold standard antiedad. Acelera renovación celular, reduce arrugas, mejora textura y trata acné. Úsalo de noche, empieza con baja concentración y siempre usa protector solar.',
+            'niacinamida': 'La niacinamida (vitamina B3) controla grasa, minimiza poros, reduce manchas, fortalece la barrera cutánea y calma inflamación. Compatible con casi todos los ingredientes. Concentración ideal: 5-10%.',
+            'ácido salicílico': 'El ácido salicílico (BHA) es liposoluble, penetra poros, exfolia desde dentro, trata acné y puntos negros. Ideal para piel grasa y propensa a acné. Concentración: 0.5-2%.',
+            'ácido glicólico': 'El ácido glicólico (AHA) exfolia la superficie, mejora textura, ilumina y trata manchas. Ideal para piel seca, opaca y con signos de edad. Aumenta sensibilidad solar, usa protector.',
+
+            // Rutinas
+            'rutina mañana': 'Rutina matutina: 1) Limpiador suave, 2) Tónico (opcional), 3) Sérum con vitamina C o antioxidantes, 4) Contorno de ojos, 5) Hidratante según tu tipo de piel, 6) Protector solar SPF 30+ (IMPRESCINDIBLE).',
+            'rutina noche': 'Rutina nocturna: 1) Desmaquillante/aceite limpiador, 2) Limpiador facial, 3) Exfoliante químico (2-3 veces/semana), 4) Tónico, 5) Sérum con retinol o activos, 6) Contorno de ojos, 7) Crema hidratante/nutritiva.',
+            'doble limpieza': 'La doble limpieza consiste en: 1) Limpiador oleoso para eliminar maquillaje, protector solar y exceso de grasa, 2) Limpiador acuoso para limpiar impurezas restantes. Esencial para piel limpia y receptiva.',
+
+            // Problemas comunes
+            'acné': 'El acné se trata con: limpieza suave 2 veces/día, ácido salicílico o peróxido de benzoilo, niacinamida, retinoides, hidratación oil-free. No exprimas granos. Si es severo, consulta dermatólogo para tratamiento médico.',
+            'manchas': 'Las manchas se tratan con: vitamina C, niacinamida, ácido kójico, alfa-arbutina, retinol y SIEMPRE protector solar. La constancia es clave. Resultados visibles en 8-12 semanas. Evita exposición solar.',
+            'arrugas': 'Las arrugas se previenen y tratan con: retinol/retinoides, vitamina C, péptidos, ácido hialurónico, protector solar diario, hidratación profunda. El retinol es el más efectivo. Sé constante.',
+            'poros dilatados': 'Los poros dilatados se minimizan con: limpieza profunda, exfoliación con BHA (ácido salicílico), niacinamida, retinol, mascarillas de arcilla. Los poros no se cierran, pero sí se pueden minimizar.',
+            'ojeras': 'Las ojeras se tratan según su causa: azules (circulación) - cafeína, vitamina K; marrones (pigmentación) - vitamina C, niacinamida; hundidas (pérdida volumen) - ácido hialurónico, retinol. Duerme bien y mantente hidratado.',
+
+            // Protección solar
+            'protector solar': 'El protector solar es el producto antiedad más importante. Usa SPF 30+ mínimo, de amplio espectro (UVA/UVB), diariamente incluso en días nublados. Reaplica cada 2 horas. Previene cáncer de piel, manchas y envejecimiento.',
+            'spf': 'SPF (Factor de Protección Solar) indica protección contra UVB. SPF 30 bloquea 97%, SPF 50 bloquea 98%. Más importante que el número es la aplicación correcta (2mg/cm²) y reaplicación cada 2 horas.',
+
+            // Orden de aplicación
+            'orden productos': 'Orden correcto: 1) Limpiador, 2) Tónico, 3) Sérum (del más líquido al más denso), 4) Contorno de ojos, 5) Hidratante, 6) Aceite facial (si usas), 7) Protector solar (AM). Regla: de más ligero a más pesado.',
+
+            // Frecuencia
+            'exfoliación': 'Exfolia 2-3 veces/semana máximo. Piel sensible: 1 vez/semana. Prefiere exfoliantes químicos (AHA/BHA) sobre físicos. La sobre-exfoliación daña la barrera cutánea causando sensibilidad, rojez y brotes.',
+
+            // Mitos
+            'piel grasa hidratación': 'MITO: La piel grasa no necesita hidratación. REALIDAD: Toda piel necesita hidratación. La piel grasa deshidratada produce MÁS grasa para compensar. Usa hidratantes ligeros, gel o oil-free.',
+
+            // Edad
+            'skincare 20s': 'En los 20s enfócate en: limpieza adecuada, hidratación, protector solar religiosamente, antioxidantes (vitamina C). Puedes empezar con retinol suave si hay acné o prevención temprana.',
+            'skincare 30s': 'En los 30s añade: retinol (antiedad), sérum con antioxidantes, contorno de ojos, hidratación más rica, exfoliación regular. El colágeno empieza a disminuir, la prevención es clave.',
+            'skincare 40s': 'En los 40s intensifica: retinoides más potentes, péptidos, ácido hialurónico, tratamientos reafirmantes, hidratación profunda. Considera tratamientos profesionales. Protector solar es vital.',
+
+            // Estaciones
+            'skincare verano': 'En verano: limpieza más frecuente, hidratantes ligeros, protector solar SPF 50+, antioxidantes, exfoliación suave. Evita retinol en día si hay mucha exposición solar. Mantente hidratado.',
+            'skincare invierno': 'En invierno: limpiadores cremosos, hidratantes más ricos, aceites faciales, humidificador, protector solar (sí, también en invierno). El frío y calefacción resecan la piel.',
+
+            // Ingredientes a evitar juntos
+            'retinol vitamina c': 'Puedes usar retinol y vitamina C, pero en momentos diferentes: vitamina C en la mañana (con protector solar) y retinol en la noche. Juntos pueden causar irritación en pieles sensibles.',
+            'ácidos retinol': 'No uses ácidos exfoliantes (AHA/BHA) con retinol la misma noche si eres principiante. Alterna noches o usa ácidos en AM y retinol en PM. Puede causar irritación severa.',
+
+            // Tiempo de resultados
+            'resultados skincare': 'Los resultados toman tiempo: hidratación (días), acné (4-6 semanas), manchas (8-12 semanas), arrugas (3-6 meses). La piel se renueva cada 28 días. Sé paciente y constante.',
+
+            // Consejos generales
+            'agua': 'Beber agua es importante para salud general, pero no hidrata directamente la piel. La hidratación cutánea viene de productos tópicos que retienen agua en la piel (humectantes, oclusivos).',
+            'alimentación piel': 'Una dieta balanceada beneficia la piel: antioxidantes (frutas/verduras), omega-3 (pescado, nueces), vitaminas A, C, E. Evita exceso de azúcar y lácteos si tienes acné. La piel refleja tu salud interna.',
+            'sueño': 'Dormir 7-9 horas es crucial. Durante el sueño la piel se repara, produce colágeno y se regenera. La falta de sueño causa ojeras, opacidad, envejecimiento prematuro y brotes.',
+            'estrés': 'El estrés aumenta cortisol, causando inflamación, brotes de acné, sensibilidad y envejecimiento. Maneja estrés con ejercicio, meditación, sueño adecuado. Tu piel refleja tu bienestar emocional.',
+            'toalla': 'Seca tu rostro con palmaditas suaves, no frotes. Usa toallas limpias (cámbialas cada 2-3 días). Las toallas sucias acumulan bacterias que causan brotes. Considera toallas de microfibra.',
+            'manos': 'No toques tu cara con las manos sucias. Las manos acumulan bacterias, grasa y suciedad que causan brotes. Si necesitas tocar tu rostro, lávate las manos primero.',
+
+            // Productos específicos
+            'sérum': 'Los sérums son concentrados de activos en base acuosa que penetran profundamente. Aplica después de limpiar y antes de hidratar. Elige según tu necesidad: vitamina C (iluminar), ácido hialurónico (hidratar), retinol (antiedad).',
+            'mascarilla': 'Las mascarillas son tratamientos intensivos 1-3 veces/semana: arcilla (piel grasa), hidratantes (piel seca), iluminadoras (piel opaca), calmantes (piel sensible). No sustituyen la rutina diaria.',
+            'contorno ojos': 'El contorno de ojos trata la piel delicada del área ocular. Usa productos específicos con cafeína (ojeras), péptidos (arrugas), ácido hialurónico (hidratación). Aplica con toquecitos suaves.',
+            'tónico': 'El tónico equilibra pH, prepara la piel para siguientes productos y aporta beneficios según tipo: hidratantes, exfoliantes (con ácidos), calmantes. No es imprescindible pero potencia la rutina.',
+
+            // Dermatólogo
+            'dermatólogo': 'Consulta un dermatólogo si tienes: acné severo o quístico, manchas que cambian, lunares irregulares, rosácea, dermatitis, caída de cabello, o si los productos no funcionan. La salud de tu piel es importante.'
+        };
+
+        let chatMessages = [];
+        let isChatOpen = false;
+
+        function initChatbot() {
+            // Mensaje de bienvenida
+            addBotMessage('¡Hola! 👋 Soy Luna, tu asistente personal de skincare. Puedo ayudarte con todo sobre el cuidado de la piel: tipos de piel, ingredientes, rutinas, problemas comunes y mucho más. ¿En qué puedo ayudarte hoy? ✨');
+        }
+
+        function toggleChat() {
+            const chatContainer = document.getElementById('chatContainer');
+            const chatButton = document.getElementById('chatButton');
+
+            isChatOpen = !isChatOpen;
+
+            if (isChatOpen) {
+                chatContainer.style.display = 'flex';
+                chatButton.style.display = 'none';
+            } else {
+                chatContainer.style.display = 'none';
+                chatButton.style.display = 'flex';
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+
+            if (message === '') return;
+
+            // Agregar mensaje del usuario
+            addUserMessage(message);
+            input.value = '';
+
+            // Simular "escribiendo..."
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                addBotMessage(response);
+            }, 500);
+        }
+
+        function addUserMessage(message) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message user-message';
+            messageDiv.innerHTML = `
+                <div class="message-content">${message}</div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function addBotMessage(message) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message bot-message';
+            messageDiv.innerHTML = `
+                <div class="bot-avatar">�</div>
+                <div class="message-content">${message}</div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getBotResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+
+            // Buscar coincidencias en la base de conocimientos
+            for (const [key, value] of Object.entries(skincareKnowledge)) {
+                if (message.includes(key)) {
+                    return value;
+                }
+            }
+
+            // Respuestas a preguntas comunes
+            if (message.includes('hola') || message.includes('hi')) {
+                return '¡Hola! 😊 ¿En qué puedo ayudarte con tu rutina de skincare?';
+            }
+
+            if (message.includes('gracias')) {
+                return '¡De nada! 💕 ¿Hay algo más sobre skincare en lo que pueda ayudarte?';
+            }
+
+            if (message.includes('ayuda') || message.includes('qué puedes hacer')) {
+                return 'Puedo ayudarte con: tipos de piel, ingredientes activos (retinol, vitamina C, ácido hialurónico, etc.), rutinas de día y noche, problemas como acné, manchas, arrugas, protección solar, orden de productos, y mucho más. ¿Qué te gustaría saber?';
+            }
+
+            if (message.includes('empezar') || message.includes('principiante')) {
+                return 'Para empezar en skincare necesitas 3 básicos: 1) Limpiador suave para tu tipo de piel, 2) Hidratante adecuado, 3) Protector solar SPF 30+ (el más importante). Una vez domines esto, puedes agregar sérums y tratamientos específicos. ¿Conoces tu tipo de piel?';
+            }
+
+            if (message.includes('cuánto cuesta') || message.includes('precio')) {
+                return 'El skincare puede adaptarse a cualquier presupuesto. Lo importante no es el precio sino elegir productos adecuados para tu tipo de piel y ser constante. Hay excelentes opciones en farmacias. Invierte más en protector solar y tratamientos activos (retinol, vitamina C).';
+            }
+
+            if (message.includes('cuánto tiempo') || message.includes('cuándo ver resultados')) {
+                return 'Los resultados varían según el objetivo: hidratación (días), acné (4-6 semanas), manchas (8-12 semanas), arrugas (3-6 meses). La piel se renueva cada 28 días. La clave es ser constante y paciente. ¿Qué problema específico quieres tratar?';
+            }
+
+            if (message.includes('embarazo') || message.includes('embarazada')) {
+                return '⚠️ Durante el embarazo evita: retinoides, ácido salicílico en altas concentraciones, hidroquinona, algunos aceites esenciales. Seguros: ácido hialurónico, vitamina C, niacinamida, ácido azelaico. SIEMPRE consulta con tu médico antes de usar cualquier producto.';
+            }
+
+            if (message.includes('natural') || message.includes('orgánico')) {
+                return 'Los productos naturales pueden ser buenos, pero "natural" no significa automáticamente mejor o más seguro. Algunos ingredientes sintéticos son más efectivos y seguros. Lo importante es que el producto sea adecuado para tu piel, sin importar si es natural o no.';
+            }
+
+            // Respuesta por defecto con sugerencias
+            return 'Interesante pregunta. Puedo ayudarte mejor si me preguntas sobre: tipos de piel (seca, grasa, mixta, sensible), ingredientes específicos (retinol, vitamina C, ácido hialurónico), rutinas (mañana, noche), problemas (acné, manchas, arrugas), o protección solar. ¿Sobre qué te gustaría saber más?';
+        }
+
+        // Permitir enviar con Enter
+        document.addEventListener('DOMContentLoaded', function () {
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+
+            // Inicializar chatbot
+            initChatbot();
+
+            // Inicializar animaciones de scroll
+            initScrollAnimations();
+
+            // Inicializar contador de estadísticas
+            initStatsCounter();
+
+            // Auto-rotar testimonios
+            startTestimonialsAutoplay();
+        });
+
+        // ============================================
+        // TESTIMONIALS CAROUSEL
+        // ============================================
+        let currentTestimonial = 0;
+        let testimonialInterval;
+
+        function showTestimonial(index) {
+            const cards = document.querySelectorAll('.testimonial-card');
+            const dots = document.querySelectorAll('.carousel-dots .dot');
+
+            cards.forEach(card => card.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            if (index >= cards.length) currentTestimonial = 0;
+            if (index < 0) currentTestimonial = cards.length - 1;
+
+            cards[currentTestimonial].classList.add('active');
+            dots[currentTestimonial].classList.add('active');
+        }
+
+        function nextTestimonial() {
+            currentTestimonial++;
+            showTestimonial(currentTestimonial);
+            resetTestimonialsAutoplay();
+        }
+
+        function prevTestimonial() {
+            currentTestimonial--;
+            showTestimonial(currentTestimonial);
+            resetTestimonialsAutoplay();
+        }
+
+        function goToTestimonial(index) {
+            currentTestimonial = index;
+            showTestimonial(currentTestimonial);
+            resetTestimonialsAutoplay();
+        }
+
+        function startTestimonialsAutoplay() {
+            testimonialInterval = setInterval(() => {
+                nextTestimonial();
+            }, 5000);
+        }
+
+        function resetTestimonialsAutoplay() {
+            clearInterval(testimonialInterval);
+            startTestimonialsAutoplay();
+        }
+
+        // ============================================
+        // FAQ ACCORDION
+        // ============================================
+        function toggleFAQ(button) {
+            const faqItem = button.parentElement;
+            const isActive = faqItem.classList.contains('active');
+
+            // Cerrar todos los FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Abrir el clickeado si no estaba activo
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // ============================================
+        // NEWSLETTER
+        // ============================================
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+
+            // Simular suscripción
+            alert(`¡Gracias por suscribirte! 💌\n\nRecibirás tips de skincare en ${email}\n\nRevisa tu bandeja de entrada para confirmar tu suscripción.`);
+
+            document.getElementById('newsletterEmail').value = '';
+        }
+
+        // ============================================
+        // SCROLL ANIMATIONS
+        // ============================================
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            // Agregar clase scroll-animate a elementos que queremos animar
+            document.querySelectorAll('.benefit-card, .testimonial-card, .faq-item, .stat-box').forEach(el => {
+                el.classList.add('scroll-animate');
+                observer.observe(el);
+            });
+        }
+
+        // ============================================
+        // STATS COUNTER
+        // ============================================
+        function initStatsCounter() {
+            const statValues = document.querySelectorAll('.stat-value');
+            let hasAnimated = false;
+
+            const observerOptions = {
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        hasAnimated = true;
+                        statValues.forEach(stat => {
+                            animateCounter(stat);
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        }
+
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current).toLocaleString();
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toLocaleString();
+                }
+            };
+
+            updateCounter();
+        }
+    </script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="scroll-top-btn" onclick="scrollToTop()">
+        <span>↑</span>
+    </button>
+
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle" class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <span id="darkModeIcon">🌙</span>
+    </button>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+
+    <!-- Chatbot UI -->
+    <div id="chatButton" class="chat-button" onclick="toggleChat()">
+        <span class="chat-icon">🌙</span>
+        <span class="chat-text">Habla con Luna</span>
+    </div>
+
+    <div id="chatContainer" class="chat-container" style="display: none;">
+        <div class="chat-header">
+            <div class="chat-header-content">
+                <span class="chat-avatar">�<< /span>
+                        <div>
+                            <h4>Luna</h4>
+                            <p>Tu experta en skincare ✨</p>
+                        </div>
+            </div>
+            <button class="chat-close" onclick="toggleChat()">✕</button>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <!-- Los mensajes se agregarán aquí dinámicamente -->
+        </div>
+
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Pregunta sobre skincare..." class="chat-input">
+            <button onclick="sendMessage()" class="chat-send">
+                <span>➤</span>
+            </button>
+        </div>
+    </div>
+
+    <style>
+        /* Chatbot Styles */
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-peach));
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(255, 182, 193, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 999;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+
+        .chat-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 182, 193, 0.5);
+        }
+
+        .chat-icon {
+            font-size: 1.5rem;
+        }
+
+        .chat-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 380px;
+            height: 550px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-peach));
+            color: white;
+            padding: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chat-avatar {
+            font-size: 2rem;
+        }
+
+        .chat-header h4 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .chat-header p {
+            margin: 0;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .chat-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .chat-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            background: var(--soft-gray);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 0.5rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .user-message {
+            justify-content: flex-end;
+        }
+
+        .user-message .message-content {
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-peach));
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 18px 18px 4px 18px;
+            max-width: 75%;
+            word-wrap: break-word;
+        }
+
+        .bot-message {
+            justify-content: flex-start;
+        }
+
+        .bot-avatar {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .bot-message .message-content {
+            background: white;
+            color: var(--text-dark);
+            padding: 0.75rem 1rem;
+            border-radius: 18px 18px 18px 4px;
+            max-width: 75%;
+            word-wrap: break-word;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            line-height: 1.5;
+        }
+
+        .chat-input-container {
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-family: var(--font-body);
+            transition: border-color 0.3s ease;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        .chat-send {
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-peach));
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .chat-send:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .chat-container {
+                width: calc(100vw - 40px);
+                height: calc(100vh - 100px);
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .chat-button {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .chat-text {
+                display: none;
+            }
+        }
+    </style>
+</body>
+
+</html>
